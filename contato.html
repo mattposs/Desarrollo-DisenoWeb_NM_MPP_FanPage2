@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacto — Game of Thrones</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Formulario de contacto de prueba para la fan page de Game of Thrones."/>
+</head>
+<body>
+<header>
+    <div class="banner-container">
+      <img src="image/banner4.jpg" alt="Game of Thrones Banner" class="banner-full">
+      <div class="banner-text">Fan Page</div>
+    </div>
+    <nav class="container">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a class="activo" href="personajes.html">Personajes</a></li>
+        <li><a href="capitulos.html">Capítulos</a></li>
+        <li><a href="contato.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2 class="hero" style="margin-bottom:22px">Contacto</h2>
+
+    <form action="gracias.html" method="get" novalidate>
+      <label for="nombre">Nombre</label>
+      <input id="nombre" name="nombre" type="text" placeholder="Arya Stark" required />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="arya@winterfell.wos" required />
+
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" placeholder="Hola! Quiero sumar un nuevo personaje..."></textarea>
+
+      <div style="margin-top:14px">
+        <button type="submit" class="btn btn-primario">Enviar</button>
+        <a class="btn btn-secundario" href="index.html">Cancelar</a>
+      </div>
+
+      <p class="small" style="margin-top:8px">*Este formulario es de prueba y redirige a una página de agradecimiento.</p>
+    </form>
+  </main>
+
+  <footer>
+    <div class="container small">No oficial. Uso educativo.</div>
+  </footer>
+</body>
+</html>
