@@ -17,6 +17,7 @@
   --azul-hielo: #9bbcff;
   --radius: 10px;
   --shadow: 0 4px 8px rgba(0,0,0,0.4);
+  --font-base: 1rem;   /* 16px base */
 }
 
 /* ===========================
@@ -25,6 +26,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  font-size: var(--font-base);
   background: url("image/fondo.jpeg") no-repeat center center fixed;
   background-size: cover;
   color: var(--blanco-hueso);
@@ -43,6 +45,7 @@ header {
   background: #111;
   color: var(--blanco-hueso);
 }
+
 .banner-container {
   position: relative;
   text-align: center;
@@ -54,61 +57,97 @@ header {
 }
 .banner-text {
   position: absolute;
-  bottom: 10px;
-  left: 20px;
-  font-size: 22px;
-  font-family: 'GOT', serif;
+  bottom: 0.5em;
+  left: 1em;
+  font-size: 1.4rem;
   color: var(--naranja-destacado);
   text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-  padding: 2px 10px;     /* más compacto */
+  padding: 0.2em 0.6em;
   border-radius: 6px;
   background: rgba(0,0,0,0.4);
 }
 
 /* ===========================
-   NAVEGACIÓN
+   NAVEGACIÓN RESPONSIVE (CSS puro)
 =========================== */
-nav ul {
+nav {
+  background: #222;
+  position: relative;
+}
+
+nav ul.menu {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 1.2em;
   list-style: none;
   margin: 0;
-  padding: 10px;
-  background: #222;
+  padding: 0.6em;
 }
+
 nav a {
   color: var(--blanco-hueso);
   text-decoration: none;
   font-weight: bold;
+  transition: all 0.3s ease;
 }
+
 nav a.activo {
   background: var(--naranja-destacado);
-  padding: 6px 12px;
+  padding: 0.4em 0.8em;
   border-radius: 6px;
+}
+
+/* Icono hamburguesa */
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--blanco-hueso);
+  padding: 0.6em;
+}
+
+/* Hack con checkbox */
+#menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  nav ul.menu {
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    background: #222;
+  }
+  #menu-toggle:checked ~ ul.menu {
+    display: flex;
+  }
+  .menu-icon {
+    display: block;
+    text-align: right;
+  }
 }
 
 /* ===========================
    HERO (GENÉRICO)
 =========================== */
 .hero {
-  margin: 24px 0;
+  margin: 1.5em 0;
   text-align: center;
 }
 .hero-overlay {
   background: rgba(0,0,0,0.7);
-  padding: 24px;
+  padding: 1.5em;
   border-radius: 12px;
   max-width: 900px;
   margin: auto;
 }
 .hero-overlay h2 {
-  font-size: clamp(22px, 4vw, 40px);
-  margin-bottom: 16px;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: 1em;
 }
 .hero-overlay p {
-  font-size: clamp(14px, 2.5vw, 18px);
-  margin-bottom: 12px;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  margin-bottom: 0.8em;
   line-height: 1.5;
 }
 
@@ -122,7 +161,7 @@ nav a.activo {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 2em;
   text-align: center;
 }
 .hero-index::before {
@@ -139,13 +178,12 @@ nav a.activo {
   color: var(--blanco-hueso);
 }
 .hero-index .hero-content h2 {
-  font-family: 'GOT', serif;
-  font-size: clamp(26px, 4vw, 48px);
-  margin-bottom: 16px;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 1em;
 }
 .hero-index .hero-content p {
-  font-size: clamp(14px, 2vw, 18px);
-  margin-bottom: 12px;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin-bottom: 0.8em;
   line-height: 1.6;
 }
 
@@ -155,15 +193,16 @@ nav a.activo {
 .ctas {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 0.6em;
   justify-content: center;
 }
 .btn {
-  padding: 10px 20px;
+  padding: 0.6em 1.2em;
   border-radius: 6px;
   font-weight: bold;
   text-decoration: none;
   display: inline-block;
+  transition: all 0.3s ease;
 }
 .btn-primario {
   background: var(--naranja-destacado);
@@ -180,7 +219,7 @@ nav a.activo {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 1.2em;
 }
 .card {
   background: rgba(0,0,0,0.7);
@@ -195,27 +234,39 @@ nav a.activo {
   width: 100%;
 }
 .card .content {
-  padding: 16px;
+  padding: 1em;
 }
 .card h3 {
-  margin: 0 0 8px;
+  margin: 0 0 0.6em;
 }
 .card p {
-  margin: 0 0 12px;
+  margin: 0 0 0.8em;
 }
 .links .pill {
   background: var(--azul-hielo);
   color: #000;
-  padding: 6px 12px;
+  padding: 0.4em 0.8em;
   border-radius: 20px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 0.9rem;
 }
+
 /* SOLO IMÁGENES DEL INDEX */
 .index-cards .card img {
   height: 260px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
+  background: linear-gradient(180deg, #2a2a2a, #0d0d0d);
+}
+
+/* ===========================
+   IMÁGENES DE PERSONAJES
+=========================== */
+.personajes-grid .card img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: top;
   background: linear-gradient(180deg, #2a2a2a, #0d0d0d);
 }
 
@@ -224,35 +275,34 @@ nav a.activo {
 =========================== */
 .formulario {
   background: rgba(0,0,0,0.7);
-  padding: 24px;
+  padding: 1.5em;
   border-radius: 12px;
   max-width: 600px;
-  margin: 40px auto;
+  margin: 2.5em auto;
   box-shadow: var(--shadow);
 }
 .formulario h2 {
-  font-family: 'GOT', serif;
-  font-size: 28px;
-  margin-bottom: 20px;
+  font-size: 1.8rem;
+  margin-bottom: 1em;
   text-align: center;
   color: var(--blanco-hueso);
 }
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin-bottom: 1em;
 }
 .form-group label {
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 0.4em;
   color: var(--blanco-hueso);
 }
 .form-group input,
 .form-group textarea {
-  padding: 10px;
+  padding: 0.6em;
   border: 1px solid #444;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 1rem;
   background: #222;
   color: var(--blanco-hueso);
 }
@@ -262,13 +312,13 @@ nav a.activo {
 }
 .form-buttons {
   display: flex;
-  gap: 10px;
+  gap: 0.6em;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 0.6em;
 }
 .formulario .nota {
-  font-size: 12px;
-  margin-top: 10px;
+  font-size: 0.8rem;
+  margin-top: 0.6em;
   color: #ccc;
   text-align: center;
 }
@@ -278,9 +328,9 @@ nav a.activo {
 =========================== */
 footer {
   background: #111;
-  padding: 20px;
+  padding: 1.2em;
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--blanco-hueso);
 }
 footer a {
@@ -293,238 +343,65 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* INFO EXTRA (YOUTUBE / HBO) */
-.extra-info {
-  background: rgba(0,0,0,0.7);
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 15px;
-  text-align: center;
-  color: var(--blanco-hueso);
-  border-radius: 6px;
-}
-.extra-info img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  vertical-align: middle;
-  margin-right: 8px;
-}
-.extra-info a {
-  color: var(--naranja-destacado);
-  text-decoration: none;
-  font-weight: bold;
-}
-.extra-info a:hover {
-  color: var(--azul-hielo);
-  text-decoration: underline;
-}
-
 /* ===========================
-   RESPONSIVE
+   EXTRA INFO (Capítulos)
 =========================== */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .banner-text {
-    font-size: 16px;
-    bottom: 5px;
-    left: 10px;
-  }
-}
-/* ===========================
-   IMÁGENES DEL INDEX
-=========================== */
-.index-cards .card img {
-  width: 100%;
-  height: 280px;  /* altura uniforme */
-  object-fit: cover;    /* llena el espacio sin deformarse */
-  object-position: center;
-  background: linear-gradient(180deg, #2a2a2a, #0d0d0d);
-}
-/* ===========================
-   IMÁGENES DE PERSONAJES
-=========================== */
-.grid .card img {
-  width: 100%;
-  height: 500px;                   /* tamaño uniforme */
-  object-fit: cover;               /* recorta manteniendo proporciones */
-  object-position: top;            /* muestra primero la parte superior */
-  background: linear-gradient(180deg, #2a2a2a, #0d0d0d); /* fondo de relleno */
-}
-
-/* Bloque extra en capítulos */
 .extra-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.6em;
   flex-wrap: wrap;
-  justify-content: center;   /* centrado horizontal */
+  justify-content: center;
   background: rgba(0,0,0,0.8);
-  padding: 12px 20px;
+  padding: 0.8em 1.2em;
   border-radius: 8px;
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 1.2em;
+  font-size: 1rem;
   color: var(--blanco-hueso);
 }
-
 .extra-info img {
   height: 42px;
   width: 42px;
   border-radius: 50%;
   object-fit: cover;
   background: #000;
-  flex-shrink: 0;
 }
-
 .extra-info a {
   color: var(--naranja-destacado);
   font-weight: bold;
   text-decoration: none;
 }
-
 .extra-info a:hover {
   color: var(--azul-hielo);
   text-decoration: underline;
 }
-/* ===== NAV ===== */
-nav {
-  position: relative;
+
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+=========================== */
+/* Tablet */
+@media (max-width: 992px) {
+  body {
+    font-size: 0.95rem;
+  }
+  .hero-overlay {
+    padding: 1em;
+  }
 }
 
-nav ul.menu {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 10px;
-  background: #222;
-}
-
-nav a {
-  color: var(--blanco-hueso);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a.activo {
-  background: var(--naranja-destacado);
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-
-/* Botón hamburguesa */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 28px;
-  color: var(--blanco-hueso);
-  cursor: pointer;
-  position: absolute;
-  right: 15px;
-  top: 10px;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  nav ul.menu {
+/* Móvil */
+@media (max-width: 600px) {
+  body {
+    font-size: 0.9rem;
+  }
+  h1, h2 {
+    font-size: 1.4rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .ctas {
     flex-direction: column;
     align-items: center;
-    display: none; /* oculto por defecto en mobile */
-  }
-
-  nav ul.menu.active {
-    display: flex; /* aparece cuando se activa */
-  }
-
-  .menu-toggle {
-    display: block;
   }
 }
-/* Estilos generales */
-nav {
-  background: #222;
-  position: relative;
-}
-
-nav ul.menu {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 10px;
-}
-
-nav a {
-  color: var(--blanco-hueso);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a.activo {
-  background: var(--naranja-destacado);
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-
-/* Icono menú hamburguesa */
-.menu-icon {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: var(--blanco-hueso);
-  padding: 10px 20px;
-}
-
-/* Hack con checkbox */
-#menu-toggle {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  nav ul.menu {
-    flex-direction: column;
-    align-items: center;
-    display: none;
-  }
-
-  #menu-toggle:checked ~ ul.menu {
-    display: flex;
-  }
-
-  .menu-icon {
-    display: block;
-    text-align: right;
-  }
-}
-/*-----*/
-/* Todas las imágenes del sitio */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Cards del index */
-.index-cards .card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  object-position: center;
-  background: linear-gradient(180deg, #2a2a2a, #0d0d0d);
-}
-
-/* Cards de personajes */
-.personajes-grid .card img {
-  width: 100%;
-  height: 520px; /* formato rectangular tipo poster */
-  object-fit: cover;
-  object-position: top;
-  background: linear-gradient(180deg, #2a2a2a, #0d0d0d);
-}
-
